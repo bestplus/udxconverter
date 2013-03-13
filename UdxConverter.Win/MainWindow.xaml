@@ -33,11 +33,10 @@
         </xwt:WizardPage>
         <xwt:WizardPage Name="pageConvert"
                         Title="Starting conversation" 
-                        Description="Start converation process." 
+                        Description="Start convertation process." 
                         PageType="Interior">
-            <StackPanel Orientation="Vertical">
-                <TextBlock FontSize="24">For starting the convertation process press Convert.</TextBlock>
-                <Button Name="btnConvert" Height="60" Click="btnConvert_Click_1">Convert</Button>
+            <StackPanel Orientation="Vertical" Margin="5">
+                <Button Name="btnConvert" Height="60" Click="btnConvert_Click_1">Select output folder and convert</Button>
                 <TextBlock Name="txtConvertationFinished" FontSize="24" Visibility="Hidden">Convertation has been finished.</TextBlock>
             </StackPanel>
         </xwt:WizardPage>
