@@ -4,6 +4,8 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
 using UdxConverter.Win.Model;
+using System.Linq;
+using System.Windows.Controls;
 
 namespace UdxConverter.Win
 {
@@ -42,7 +44,6 @@ END:VCARD";
                 _openFilePageModel.FileName = fileOpenDialog.FileName;
 
                 FillPhoneNumbers();
-                OpenFilePage.CanSelectNextPage = true;
             }
         }
 
@@ -54,12 +55,23 @@ END:VCARD";
 
             foreach (Match data in _vcardInfoRegex.Matches(fileContent))
             {
-                _openFilePageModel.Phones.Add(new PhoneNumber
+                var phoneClass = new PhoneNumber
                 {
                     Name = _nameRegex.Match(data.Value).Groups[1].Value.TrimStart(';'),
-                    Number = _phoneRegex.Match(data.Value).Groups[1].Value
-                });
+                    Number = _phoneRegex.Match(data.Value).Groups[1].Value,
+                    IsSelected = true
+                };
+                phoneClass.PropertyChanged += phoneClass_PropertyChanged;
+
+                _openFilePageModel.Phones.Add(phoneClass);
             }
+
+            phoneClass_PropertyChanged(null, null);
+        }
+
+        void phoneClass_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            OpenFilePage.CanSelectNextPage = _openFilePageModel.Phones.Count(p => p.IsSelected) > 0;
         }
 
         private void btnConvert_Click_1(object sender, RoutedEventArgs e)
@@ -78,7 +90,7 @@ END:VCARD";
 
         private void CreateVCardFiles(string vcardOutputDirectory)
         {
-            foreach (var phone in _openFilePageModel.Phones)
+            foreach (var phone in _openFilePageModel.Phones.Where(p => p.IsSelected))
             {
                 var output = _vCardPattern;
                 output = output.Replace("{%NAME%}", phone.Name);
@@ -94,6 +106,30 @@ END:VCARD";
             {
                 System.Diagnostics.Process.Start(_resultDirectory);
             }
+        }
+
+        private void chkSelectAll_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (((CheckBox)sender).IsChecked == true)
+            {
+                CheckPhones(true);
+            }
+            else
+            {
+                CheckPhones(false);
+            }
+        }
+
+        private void CheckPhones(bool isChecked)
+        {
+            foreach (var phone in _openFilePageModel.Phones)
+            {
+                phone.PropertyChanged -= phoneClass_PropertyChanged;
+                phone.IsSelected = isChecked;
+                phone.PropertyChanged += phoneClass_PropertyChanged;
+            }
+
+            phoneClass_PropertyChanged(null, null);
         }
     }
 }

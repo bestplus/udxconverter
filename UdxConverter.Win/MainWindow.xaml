@@ -25,6 +25,18 @@
                 </StackPanel>
                 <DataGrid Grid.Row="1" Name="gridPhones" ItemsSource="{Binding Phones}" AutoGenerateColumns="False" IsReadOnly="True">
                     <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <CheckBox Name="chkSelectAll" Click="chkSelectAll_Click_1" IsChecked="True"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.HeaderTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTextColumn Binding="{Binding Name}" Width="*" Header="Name"/>
                         <DataGridTextColumn Binding="{Binding Number}" Width="150" Header="Number"/>
                     </DataGrid.Columns>

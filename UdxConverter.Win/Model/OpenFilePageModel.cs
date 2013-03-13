@@ -32,9 +32,10 @@ namespace UdxConverter.Win.Model
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(String name)
         {
-            if (PropertyChanged != null)
+            var @event = PropertyChanged;
+            if (@event != null)
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
+                @event(this, new PropertyChangedEventArgs(name));
             }
         }
     }
