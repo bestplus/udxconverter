@@ -1,4 +1,4 @@
-udxconverter
+Udx Converter
 ============
 
-Converter for Philips Xenium mobile contacts into the vCard files
+Converts Philips Xenium mobile contacts file into the vCard files
