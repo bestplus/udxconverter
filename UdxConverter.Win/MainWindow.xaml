@@ -1,0 +1,45 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xwt="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        mc:Ignorable="d" 
+        x:Class="UdxConverter.Win.MainWindow"
+        Title="UDX to vCard Wizard" Width="600" Height="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <xwt:Wizard FinishButtonClosesWindow="True" CanHelp="False">
+        <xwt:WizardPage Name="IntroPage" Title="Welcome to UDx to vCard converter"
+                            Description="This is UDX files converter"/>
+        <xwt:WizardPage Name="OpenFilePage" Title="Open UDX file"
+                            Description="Select your udx file with phone contacts" 
+                            PageType="Interior" CanSelectNextPage="False">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock VerticalAlignment="Center" Margin="0,0,10,0">Open UDX File: </TextBlock>
+                    <Button Name="btnSelectUdx" VerticalAlignment="Center" Click="btnSelectUdx_Click_1">Browse...</Button>
+                    <TextBlock Name="txtFileName" Margin="10,0,0,0" Text="{Binding FileName}" />
+                </StackPanel>
+                <DataGrid Grid.Row="1" Name="gridPhones" ItemsSource="{Binding Phones}" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Name}" Width="*" Header="Name"/>
+                        <DataGridTextColumn Binding="{Binding Number}" Width="150" Header="Number"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </xwt:WizardPage>
+        <xwt:WizardPage Name="pageConvert"
+                        Title="Starting conversation" 
+                        Description="Start converation process." 
+                        PageType="Interior">
+            <StackPanel Orientation="Vertical">
+                <TextBlock FontSize="24">For starting the convertation process press Convert.</TextBlock>
+                <Button Name="btnConvert" Height="60" Click="btnConvert_Click_1">Convert</Button>
+                <TextBlock Name="txtConvertationFinished" FontSize="24" Visibility="Hidden">Convertation has been finished.</TextBlock>
+            </StackPanel>
+        </xwt:WizardPage>
+    </xwt:Wizard>
+</Window>
