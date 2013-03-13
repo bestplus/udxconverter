@@ -12,8 +12,27 @@ namespace UdxConverter.Console
     {
         static void Main(string[] args)
         {
-            var udxFilePath = @"D:\Documents\Phone\CNT.udx";
-            var vcardOutputDirectory = @"D:\Documents\Phone\vcard\";
+            if (args.Length != 2 || !File.Exists(args[0]))
+            {
+                System.Console.WriteLine("Use: UdxConverter.Console <udx filename> <output directory>");
+                return;
+            }
+
+            if (!Directory.Exists(args[1]))
+            {
+                try
+                {
+                    Directory.CreateDirectory(args[1]);
+                }
+                catch (Exception exc)
+                {
+                    System.Console.WriteLine(exc.Message);
+                    return;
+                }
+            }
+
+            var udxFilePath = args[0];
+            var vcardOutputDirectory = args[1];
 
             var pattern = @"BEGIN:VCARD
 VERSION:2.1
@@ -36,8 +55,10 @@ END:VCARD
                 output = output.Replace("{%NAME%}", name);
                 output = output.Replace("{%PHONE%}", phone);
 
-                File.WriteAllText(Path.Combine(vcardOutputDirectory, data.Index + ".vcf"), output);
+                File.WriteAllText(Path.Combine(vcardOutputDirectory, name + ".vcf"), output);
             }
+
+            System.Console.WriteLine("Files converted into the directory \""+vcardOutputDirectory+"\"");
         }
     }
 }
