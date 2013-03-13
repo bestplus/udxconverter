@@ -7,7 +7,7 @@
         mc:Ignorable="d" 
         x:Class="UdxConverter.Win.MainWindow"
         Title="UDX to vCard Wizard" Width="600" Height="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="Upload to phone.ico">
-    <xwt:Wizard FinishButtonClosesWindow="True" CanHelp="False">
+    <xwt:Wizard Name="Wizard" FinishButtonClosesWindow="True" CanHelp="False" Finish="Wizard_Finish_1">
         <xwt:WizardPage Name="IntroPage" Title="Welcome to UDx to vCard converter"
                             Description="This is UDX files converter"/>
         <xwt:WizardPage Name="OpenFilePage" Title="Open UDX file"
@@ -38,6 +38,7 @@
             <StackPanel Orientation="Vertical" Margin="5">
                 <Button Name="btnConvert" Height="60" Click="btnConvert_Click_1">Select output folder and convert</Button>
                 <TextBlock Name="txtConvertationFinished" FontSize="24" Visibility="Hidden">Convertation has been finished.</TextBlock>
+                <CheckBox Name="chkOpenResultFolder" IsChecked="True">Open result folder after finish</CheckBox>
             </StackPanel>
         </xwt:WizardPage>
     </xwt:Wizard>

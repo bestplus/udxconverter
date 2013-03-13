@@ -22,6 +22,7 @@ TEL;CELL:{%PHONE%}
 END:VCARD";
 
         private OpenFilePageModel _openFilePageModel = new OpenFilePageModel();
+        private string _resultDirectory;
 
         public MainWindow()
         {
@@ -66,7 +67,8 @@ END:VCARD";
             var openDirectoryDialog = new VistaFolderBrowserDialog();
             if (openDirectoryDialog.ShowDialog() == true)
             {
-                CreateVCardFiles(openDirectoryDialog.SelectedPath);
+                _resultDirectory = openDirectoryDialog.SelectedPath;
+                CreateVCardFiles(_resultDirectory);
 
                 btnConvert.Visibility = System.Windows.Visibility.Hidden;
                 txtConvertationFinished.Visibility = System.Windows.Visibility.Visible;
@@ -83,6 +85,14 @@ END:VCARD";
                 output = output.Replace("{%PHONE%}", phone.Number);
 
                 File.WriteAllText(Path.Combine(vcardOutputDirectory, phone.Name + ".vcf"), output);
+            }
+        }
+
+        private void Wizard_Finish_1(object sender, RoutedEventArgs e)
+        {
+            if (chkOpenResultFolder.IsChecked == true)
+            {
+                System.Diagnostics.Process.Start(_resultDirectory);
             }
         }
     }
