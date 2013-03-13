@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         mc:Ignorable="d" 
         x:Class="UdxConverter.Win.MainWindow"
-        Title="UDX to vCard Wizard" Width="600" Height="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="UDX to vCard Wizard" Width="600" Height="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="Upload to phone.ico">
     <xwt:Wizard FinishButtonClosesWindow="True" CanHelp="False">
         <xwt:WizardPage Name="IntroPage" Title="Welcome to UDx to vCard converter"
                             Description="This is UDX files converter"/>
