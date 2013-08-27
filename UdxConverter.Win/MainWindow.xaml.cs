@@ -96,7 +96,9 @@ END:VCARD";
                 output = output.Replace("{%NAME%}", phone.Name);
                 output = output.Replace("{%PHONE%}", phone.Number);
 
-                File.WriteAllText(Path.Combine(vcardOutputDirectory, phone.Name + ".vcf"), output);
+                var fileName = phone.Name.Replace('/', '_').Replace('\\', '_') + ".vcf";
+
+                File.WriteAllText(Path.Combine(vcardOutputDirectory, fileName), output);
             }
         }
 

@@ -8,14 +8,14 @@
     <framework targetVersion="4.0" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="UdxConverter.Console.exe.manifest" size="4695">
+    <dependentAssembly dependencyType="install" codebase="UdxConverter.Console.exe.manifest" size="4627">
       <assemblyIdentity name="UdxConverter.Console.exe" version="1.0.0.2" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>q5Xitdiqjuk+7irdmb8ALmsPTis=</dsig:DigestValue>
+        <dsig:DigestValue>1HepbnR4d/Bzapu0kkSsktbXT8c=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

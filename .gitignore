@@ -119,3 +119,5 @@ UpgradeLog*.XML
 /Executable/Express/SingleImage/Reports/*.htm
 /Executable/Express/SingleImage/DiskImages/DISK1/*.msi
 /Executable/Express/SingleImage/LogFiles/error
+
+/Doc

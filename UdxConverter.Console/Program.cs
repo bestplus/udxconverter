@@ -55,7 +55,9 @@ END:VCARD
                 output = output.Replace("{%NAME%}", name);
                 output = output.Replace("{%PHONE%}", phone);
 
-                File.WriteAllText(Path.Combine(vcardOutputDirectory, name + ".vcf"), output);
+                var fileName = name.Replace('/', '_').Replace('\\', '_') + ".vcf";
+
+                File.WriteAllText(Path.Combine(vcardOutputDirectory, fileName), output);
             }
 
             System.Console.WriteLine("Files converted into the directory \""+vcardOutputDirectory+"\"");
